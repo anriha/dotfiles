@@ -1,4 +1,3 @@
-" Fisa-vim-config, a config for both Vim and NeoVim
 " http://vim.fisadev.com
 " version: 12.0.0
 
@@ -59,8 +58,9 @@ else
 endif
 
 " Now the actual plugins:
-
 " Override configs by directory
+Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
+
 Plug 'arielrossanigo/dir-configs-override.vim'
 " Code commenter
 Plug 'scrooloose/nerdcommenter'
