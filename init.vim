@@ -97,7 +97,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/context_filetype.vim'
 " Just to add the python go-to-definition and similar features, autocompletion
 " from this plugin is disabled
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " Automatically close parenthesis, etc
 Plug 'Townk/vim-autoclose'
 " Surround
@@ -109,7 +109,7 @@ Plug 'jeetsukumaran/vim-indentwise'
 " Better language packs
 Plug 'sheerun/vim-polyglot'
 " Ack code search (requires ack installed in the system)
-Plug 'mileszs/ack.vim'
+Plug 'mileszs/ck.vim'
 " Paint css colors with the real color
 Plug 'lilydjwg/colorizer'
 " Window chooser
@@ -263,7 +263,6 @@ set shell=/bin/bash
 
 " Ability to add python breakpoints
 " (I use ipdb, but you can change it to whatever tool you use for debugging)
-au FileType python map <silent> <leader>b Oimport ipdb; ipdb.set_trace()<esc>
 
 " ============================================================================
 " Plugins settings and mappings
@@ -350,31 +349,33 @@ nmap ,wF :execute ":Lines " . expand('<cword>')<CR>
 " commands finder mapping
 nmap ,c :Commands<CR>
 
+" Use clipboard
+set clipboard+=unnamedplus
 " Deoplete -----------------------------
 
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-" complete with words from any opened file
-let g:context_filetype#same_filetypes = {}
-let g:context_filetype#same_filetypes._ = '_'
-
-" Jedi-vim ------------------------------
-
-" Disable autocompletion (using deoplete instead)
-let g:jedi#completions_enabled = 0
-
-" All these mappings work only for python code:
-" Go to definition
-let g:jedi#goto_command = ',d'
-" Find ocurrences
-let g:jedi#usages_command = ',o'
-" Find assignments
-let g:jedi#goto_assignments_command = ',a'
-" Go to definition in new tab
-nmap ,D :tab split<CR>:call jedi#goto()<CR>
-
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_ignore_case = 1
+" let g:deoplete#enable_smart_case = 1
+"  " complete with words from any opened file
+" let g:context_filetype#same_filetypes = {}
+" let g:context_filetype#same_filetypes._ = '_'
+" 
+"  " Jedi-vim ------------------------------
+" 
+"  " Disable autocompletion (using deoplete instead)
+" let g:jedi#completions_enabled = 0
+" 
+"  " All these mappings work only for python code:
+"  " Go to definition
+nmap ,d <Plug>(coc-definition)
+"  " Find ocurrences
+" let g:jedi#usages_command = ',o'
+"  " Find assignments
+" let g:jedi#goto_assignments_command = ',a'
+"  " Go to definition in new tab
+" nmap ,D :tab split<CR>:call jedi#goto()<CR>
+" 
 " Ack.vim ------------------------------
 
 " mappings
@@ -447,6 +448,9 @@ if fancy_symbols_enabled
 else
     let g:webdevicons_enable = 0
 endif
+
+set statusline^=%{coc#status()}
+
 
 " Custom configurations ----------------
 
