@@ -137,6 +137,8 @@ Plug 'myusuf3/numbers.vim'
 " Nice icons in the file explorer and file type status line.
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'idanarye/vim-vebugger'
+
 if using_vim
     " Consoles as buffers (neovim has its own consoles as buffers)
     Plug 'rosenfeld/conque-term'
@@ -210,6 +212,9 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+
+set timeoutlen=500
+set ttimeoutlen=0
 
 " show line numbers
 set nu
@@ -369,6 +374,7 @@ set clipboard+=unnamedplus
 "  " All these mappings work only for python code:
 "  " Go to definition
 nmap ,d <Plug>(coc-definition)
+nmap ,o <Plug>(coc-references)
 "  " Find ocurrences
 " let g:jedi#usages_command = ',o'
 "  " Find assignments
